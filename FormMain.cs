@@ -3,6 +3,7 @@ using HuExtend;
 using Microsoft.Playwright;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.WinForms;
+using NewLife;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,23 +71,20 @@ namespace AIComposer
         private const int _left = 10;
         private const int _right = 0;
 
-        private List<string> _urls = new List<string>(){
-            "https://tongyi.aliyun.com/qianwen",
-            "https://kimi.moonshot.cn/",
-            "https://www.doubao.com/chat/"
-        };
+
 
         private List<WebView2> _webViews = new List<WebView2>();
 
         //根据url列表，初始化webview2
         private async Task InitializeWebViewList()
         {
-            foreach (var url in _urls)
+            foreach (var ai in Program.AIList)
             {
                 var webView = new WebView2();
                 webView.CoreWebView2InitializationCompleted += WebViewInitializeCompleted;
                 await InitializeWebView(webView);
-                webView.Source = new Uri(url);
+                webView.Source = new Uri(ai.Url);
+                webView.Tag = ai;
                 _webViews.Add(webView);
             }
 
@@ -99,10 +97,7 @@ namespace AIComposer
 
         private async Task InitializeWebView(WebView2 webView)
         {
-            // 指定缓存路径，这里以LocalApplicationData目录为例
             string userDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "AIComposerCache");
-
-            // 确保目录存在
             Directory.CreateDirectory(userDataFolder);
 
             // 创建CoreWebView2Environment实例，并指定缓存目录
@@ -115,22 +110,6 @@ namespace AIComposer
             await webView.EnsureCoreWebView2Async(environment);
         }
 
-
-        public class GlobalHotkey
-        {
-            // 导入Windows API函数
-            [DllImport("user32.dll")]
-            public static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
-
-            [DllImport("user32.dll")]
-            public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
-
-            // 定义修饰键
-            public const uint MOD_ALT = 0x0001;
-            public const uint MOD_CONTROL = 0x0002;
-            public const uint MOD_SHIFT = 0x0004;
-            public const uint MOD_WIN = 0x0008;
-        }
 
         private const int KEY_SHOW = 1;
         private const int KEY_QUESTION = 2;
@@ -229,43 +208,23 @@ namespace AIComposer
 
             foreach (var page in context.Pages)
             {
-                var defaultTimeout = 1000;
-                var defaultClickOptions = new LocatorClickOptions()
+                foreach (var ai in Program.AIList)
                 {
-                    Timeout = defaultTimeout
-                };
-                var defaultFillOptions = new LocatorFillOptions()
-                {
-                    Timeout = defaultTimeout
-                };
-
-                try
-                {
-                    if (page.Url.Contains("qianwen"))
+                    if (page.Url.Contains(ai.Key))
                     {
-                        await page.GetByPlaceholder("“/”唤起指令中心，Shift+Enter").ClickAsync(defaultClickOptions);
-                        await page.GetByPlaceholder("“/”唤起指令中心，Shift+Enter").FillAsync(content, defaultFillOptions);
-                        await page.Locator("[class*=operateBtn]").ClickAsync(defaultClickOptions);
+                        var res = await ai.AskAsync(content, page);
+                        if (res.code == 0)
+                        {
+                            AntdUI.Notification.error(this, "错误", $"向{ai.Name}提问失败，请调整窗口布局！", TAlignFrom.Top);
+                        }
+                        else
+                        {
+                            AntdUI.Message.success(this, $"提问成功：{ai.Name}");
+                        }
                     }
 
-                    if (page.Url.Contains("kimi"))
-                    {
-                        await page.GetByTestId("msh-chatinput-editor").ClickAsync(defaultClickOptions);
-                        await page.GetByTestId("msh-chatinput-editor").FillAsync(content, defaultFillOptions);
-                        await page.GetByTestId("msh-chatinput-send-button").ClickAsync(defaultClickOptions);
-                    }
-
-                    if (page.Url.Contains("doubao"))
-                    {
-                        await page.GetByTestId("chat_input_input").ClickAsync(defaultClickOptions);
-                        await page.GetByTestId("chat_input_input").FillAsync(content, defaultFillOptions);
-                        await page.GetByTestId("chat_input_send_button").ClickAsync(defaultClickOptions);
-                    }
                 }
-                catch
-                {
-                    AntdUI.Notification.error(this, "错误", "提问失败，请调整窗口布局：" + page.Url, TAlignFrom.Top);
-                }
+
             }
         }
 

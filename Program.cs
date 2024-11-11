@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.Text;
+using System.Collections.Generic;
+using AIComposer.AISupport;
 
 namespace AIComposer
 {
@@ -19,6 +21,12 @@ namespace AIComposer
         private const int SW_SHOW = 5;
 
         public static SystemSetting Setting { get; set; }
+
+        public static List<AIBase> AIList { get; set; } = new List<AIBase>(){
+            new TongYiAI(),
+            new KimiAI(),
+            new DouBaoAI()
+        };
 
         [STAThread]
         static void Main()

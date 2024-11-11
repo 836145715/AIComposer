@@ -300,6 +300,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AISupport\AIBase.cs" />
+    <Compile Include="AISupport\DouBaoAI.cs" />
+    <Compile Include="AISupport\KimiAI.cs" />
+    <Compile Include="AISupport\TongYiAI.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -307,6 +311,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalHotkey.cs" />
     <Compile Include="HotkeyInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,6 +370,7 @@
   <ItemGroup>
     <Content Include="ai工具.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets" Condition="Exists('packages\Microsoft.Web.WebView2.1.0.2849.39\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
