@@ -25,7 +25,7 @@ namespace AIComposer.AISupport
 
         }
 
-        public AIBase(string name, string description, string url, int defaultTimeout = 1000)
+        public AIBase(string name, string description, string url, int defaultTimeout = 3000)
         {
             Name = name;
             Description = description;

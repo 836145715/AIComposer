@@ -93,6 +93,7 @@
             // inputProxy
             // 
             this.inputProxy.AllowClear = true;
+            this.inputProxy.Enabled = false;
             this.inputProxy.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.inputProxy.Location = new System.Drawing.Point(447, 3);
             this.inputProxy.Name = "inputProxy";

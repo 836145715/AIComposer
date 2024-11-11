@@ -381,6 +381,10 @@ namespace AIComposer
             windowBar.SubText = sb.ToString();
         }
 
-
+        private async void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            await InitializeWebViewList();
+            FormMain_Resize(this,null);
+        }
     }
 }

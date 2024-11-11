@@ -36,12 +36,14 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripNotify = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonRefresh = new AntdUI.Button();
             this.windowBar.SuspendLayout();
             this.contextMenuStripNotify.SuspendLayout();
             this.SuspendLayout();
             // 
             // windowBar
             // 
+            this.windowBar.Controls.Add(this.buttonRefresh);
             this.windowBar.Controls.Add(this.buttonAsk);
             this.windowBar.Controls.Add(this.buttonSetting);
             this.windowBar.DividerMargin = 10;
@@ -106,6 +108,20 @@
             this.menuExit.Text = "退出";
             this.menuExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
+            // buttonRefresh
+            // 
+            this.buttonRefresh.Dock = System.Windows.Forms.DockStyle.Right;
+            this.buttonRefresh.Ghost = true;
+            this.buttonRefresh.IconRatio = 1F;
+            this.buttonRefresh.IconSvg = resources.GetString("buttonRefresh.IconSvg");
+            this.buttonRefresh.Location = new System.Drawing.Point(1146, 0);
+            this.buttonRefresh.Name = "buttonRefresh";
+            this.buttonRefresh.Radius = 0;
+            this.buttonRefresh.Size = new System.Drawing.Size(50, 46);
+            this.buttonRefresh.TabIndex = 3;
+            this.buttonRefresh.WaveSize = 0;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
+            // 
             // AIComposer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -131,6 +147,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuExit;
         private AntdUI.Button buttonSetting;
         private AntdUI.Button buttonAsk;
+        private AntdUI.Button buttonRefresh;
     }
 }
 

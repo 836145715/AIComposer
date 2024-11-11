@@ -301,9 +301,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AISupport\AIBase.cs" />
+    <Compile Include="AISupport\ChatGLM.cs" />
+    <Compile Include="AISupport\ChatGpt.cs" />
     <Compile Include="AISupport\DouBaoAI.cs" />
     <Compile Include="AISupport\KimiAI.cs" />
+    <Compile Include="AISupport\PoeAI.cs" />
+    <Compile Include="AISupport\TiangongAI.cs" />
     <Compile Include="AISupport\TongYiAI.cs" />
+    <Compile Include="AISupport\XunFeiAI.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

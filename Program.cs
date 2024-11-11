@@ -25,7 +25,12 @@ namespace AIComposer
         public static List<AIBase> AIList { get; set; } = new List<AIBase>(){
             new TongYiAI(),
             new KimiAI(),
-            new DouBaoAI()
+            new DouBaoAI(),
+            new ChatGpt(),
+            new ChatGLM(),
+            new PoeAI(),
+            new TiangongAI(),
+            //new XunFeiAI(),
         };
 
         [STAThread]
