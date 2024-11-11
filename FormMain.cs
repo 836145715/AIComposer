@@ -91,8 +91,29 @@ namespace AIComposer
         //根据url列表，初始化webview2
         private async Task InitializeWebViewList()
         {
-            foreach (var ai in Program.AIList)
+            //先关闭所有webview2
+            foreach (var webView in _webViews)
             {
+                this.Controls.Remove(webView);
+                webView.Dispose();
+            }
+            _webViews.Clear();
+
+            //输出窗口内所有控件
+            foreach (Control control in this.Controls)
+            {
+                Console.WriteLine(control.Name);
+            }
+
+            foreach (var aiSetting in Program.Setting.AISettings)
+            {
+                if (aiSetting.Enabled == false)
+                    continue;
+                var ai = Program.AIList.FirstOrDefault(x => x.Key == aiSetting.Key);
+                if (ai == null)
+                {
+                    continue;
+                }
                 var webView = new WebView2();
                 webView.CoreWebView2InitializationCompleted += WebViewInitializeCompleted;
                 await InitializeWebView(webView);
@@ -302,7 +323,7 @@ namespace AIComposer
             await OnQuestion();
         }
 
-        private void buttonSetting_Click(object sender, EventArgs e)
+        private async void buttonSetting_Click(object sender, EventArgs e)
         {
             //注销热键
             GlobalHotkey.UnregisterHotKey(this.Handle, KEY_SHOW);
@@ -312,6 +333,8 @@ namespace AIComposer
             if (res == DialogResult.OK)
             {
                 SaveSetting();
+                await InitializeWebViewList();
+                FormMain_Resize(this, null);
             }
             RefreshSetting();
             form.Dispose();
