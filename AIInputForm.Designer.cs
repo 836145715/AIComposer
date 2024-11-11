@@ -97,6 +97,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonAsk);
             this.Controls.Add(this.inputContent);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AIInputForm";
             this.Load += new System.EventHandler(this.AIInputControl_Load);
             this.ResumeLayout(false);

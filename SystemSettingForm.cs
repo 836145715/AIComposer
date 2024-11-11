@@ -50,6 +50,12 @@ namespace AIComposer
             }
         }
 
+
+        private void InitAiSelect()
+        {
+
+        }
+
         private void buttonShowHotKey_Click(object sender, EventArgs e)
         {
             using (var dialog = new HotkeyInputForm())

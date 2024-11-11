@@ -32,13 +32,16 @@
             AntdUI.Tabs.StyleLine styleLine1 = new AntdUI.Tabs.StyleLine();
             this.titlebar = new AntdUI.WindowBar();
             this.tabs = new AntdUI.Tabs();
-            this.tabPage1 = new AntdUI.TabPage();
             this.tabPage2 = new AntdUI.TabPage();
-            this.buttonShowHotKey = new AntdUI.Button();
+            this.tabPage1 = new AntdUI.TabPage();
             this.buttonAskHotKey = new AntdUI.Button();
+            this.buttonShowHotKey = new AntdUI.Button();
             this.buttonOk = new AntdUI.Button();
             this.buttonCancel = new AntdUI.Button();
+            this.selectAi = new AntdUI.Select();
+            this.buttonAddAi = new AntdUI.Button();
             this.tabs.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +62,7 @@
             // tabs
             // 
             this.tabs.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabs.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabs.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
             this.tabs.Gap = 12;
             this.tabs.Location = new System.Drawing.Point(9, 49);
@@ -67,11 +70,21 @@
             this.tabs.Name = "tabs";
             this.tabs.Pages.Add(this.tabPage2);
             this.tabs.Pages.Add(this.tabPage1);
-            this.tabs.SelectedIndex = 1;
             this.tabs.Size = new System.Drawing.Size(421, 346);
             this.tabs.Style = styleLine1;
             this.tabs.TabIndex = 2;
             this.tabs.Text = "tabs1";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.buttonAddAi);
+            this.tabPage2.Controls.Add(this.selectAi);
+            this.tabPage2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPage2.Location = new System.Drawing.Point(90, 6);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(325, 334);
+            this.tabPage2.TabIndex = 0;
+            this.tabPage2.Text = "AI配置";
             // 
             // tabPage1
             // 
@@ -86,14 +99,18 @@
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "热键配置";
             // 
-            // tabPage2
+            // buttonAskHotKey
             // 
-            this.tabPage2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPage2.Location = new System.Drawing.Point(90, 6);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(502, 384);
-            this.tabPage2.TabIndex = 0;
-            this.tabPage2.Text = "AI配置";
+            this.buttonAskHotKey.BorderWidth = 2F;
+            this.buttonAskHotKey.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonAskHotKey.Ghost = true;
+            this.buttonAskHotKey.Location = new System.Drawing.Point(13, 59);
+            this.buttonAskHotKey.Name = "buttonAskHotKey";
+            this.buttonAskHotKey.Size = new System.Drawing.Size(187, 38);
+            this.buttonAskHotKey.TabIndex = 5;
+            this.buttonAskHotKey.Text = "发起提问热键：未注册";
+            this.buttonAskHotKey.Type = AntdUI.TTypeMini.Primary;
+            this.buttonAskHotKey.Click += new System.EventHandler(this.buttonAskHotKey_Click);
             // 
             // buttonShowHotKey
             // 
@@ -107,19 +124,6 @@
             this.buttonShowHotKey.Text = "显示窗口热键：未注册";
             this.buttonShowHotKey.Type = AntdUI.TTypeMini.Primary;
             this.buttonShowHotKey.Click += new System.EventHandler(this.buttonShowHotKey_Click);
-            // 
-            // buttonAskHotKey
-            // 
-            this.buttonAskHotKey.BorderWidth = 2F;
-            this.buttonAskHotKey.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonAskHotKey.Ghost = true;
-            this.buttonAskHotKey.Location = new System.Drawing.Point(13, 59);
-            this.buttonAskHotKey.Name = "buttonAskHotKey";
-            this.buttonAskHotKey.Size = new System.Drawing.Size(187, 38);
-            this.buttonAskHotKey.TabIndex = 5;
-            this.buttonAskHotKey.Text = "发起提问热键：未注册";
-            this.buttonAskHotKey.Type = AntdUI.TTypeMini.Primary;
-            this.buttonAskHotKey.Click += new System.EventHandler(this.buttonAskHotKey_Click);
             // 
             // buttonOk
             // 
@@ -154,6 +158,27 @@
             this.buttonCancel.Type = AntdUI.TTypeMini.Primary;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // selectAi
+            // 
+            this.selectAi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.selectAi.List = true;
+            this.selectAi.Location = new System.Drawing.Point(17, 3);
+            this.selectAi.Name = "selectAi";
+            this.selectAi.PlaceholderText = "请选择要添加的AI";
+            this.selectAi.Size = new System.Drawing.Size(218, 32);
+            this.selectAi.TabIndex = 4;
+            this.selectAi.WaveSize = 0;
+            // 
+            // buttonAddAi
+            // 
+            this.buttonAddAi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonAddAi.Location = new System.Drawing.Point(239, -1);
+            this.buttonAddAi.Name = "buttonAddAi";
+            this.buttonAddAi.Size = new System.Drawing.Size(80, 38);
+            this.buttonAddAi.TabIndex = 5;
+            this.buttonAddAi.Text = "添加";
+            this.buttonAddAi.Type = AntdUI.TTypeMini.Primary;
+            // 
             // SystemSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -163,10 +188,12 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.titlebar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SystemSettingForm";
             this.Text = "SystemSettingForm";
             this.Load += new System.EventHandler(this.SystemSettingForm_Load);
             this.tabs.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -182,5 +209,7 @@
         private AntdUI.Button buttonShowHotKey;
         private AntdUI.Button buttonOk;
         private AntdUI.Button buttonCancel;
+        private AntdUI.Select selectAi;
+        private AntdUI.Button buttonAddAi;
     }
 }

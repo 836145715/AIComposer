@@ -165,6 +165,14 @@ namespace AIComposer
                 else
                 {
                     this.Show();
+                    // 检查窗体是否是最小化状态
+                    if (this.WindowState == FormWindowState.Minimized)
+                    {
+                        // 将窗体恢复到正常状态
+                        this.WindowState = FormWindowState.Normal;
+                    }
+                    this.Activate();
+                    TopLevel = true;
                 }
             }
 
@@ -200,13 +208,14 @@ namespace AIComposer
 
                     // 激活窗体，使其成为活动窗口
                     this.Activate();
+                    TopLevel = true;
                     await AskQuestion(_inputForm.Content);
                 }
                 _inputForm.Dispose();
             }
             else
             {
-                _inputForm.Activate();
+                _inputForm.Close();
             }
 
         }
@@ -255,7 +264,7 @@ namespace AIComposer
                 }
                 catch
                 {
-                    AntdUI.Notification.error(this, "错误","提问失败，请调整窗口布局：" + page.Url,TAlignFrom.Top);
+                    AntdUI.Notification.error(this, "错误", "提问失败，请调整窗口布局：" + page.Url, TAlignFrom.Top);
                 }
             }
         }
