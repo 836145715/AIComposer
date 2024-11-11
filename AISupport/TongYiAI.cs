@@ -9,7 +9,7 @@ namespace AIComposer.AISupport
 {
     public class TongYiAI : AIBase
     {
-        public TongYiAI() : base("通义千问", "通义千问", "https://tongyi.aliyun.com/qianwen")
+        public TongYiAI() : base("通义千问", "通义千问，阿里旗下，通情、达义，你的全能AI助手", "https://tongyi.aliyun.com/qianwen")
         {
             Key = "tongyi";
         }

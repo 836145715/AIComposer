@@ -9,7 +9,7 @@ namespace AIComposer.AISupport
 {
     public class DouBaoAI : AIBase
     {
-        public DouBaoAI() : base("豆包", "豆包", "https://www.doubao.com/chat/")
+        public DouBaoAI() : base("豆包", "豆包 - 字节跳动旗下 AI 智能助手", "https://www.doubao.com/chat/")
         {
             Key = "doubao";
         }

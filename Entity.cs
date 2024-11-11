@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AIComposer.AISupport;
 using HuExtend;
 
 namespace AIComposer
@@ -14,6 +15,8 @@ namespace AIComposer
 
         public HotkeySetting ShowHotkey { get; set; }
         public HotkeySetting AskHotkey { get; set; }
+
+        public List<AISetting> AISettings { get; set; } = new List<AISetting>();
     }
 
     public enum KeyModifiers
@@ -39,6 +42,17 @@ namespace AIComposer
             text += Key.ToString();
             return text;
         }
+    }
+
+
+    public class AISetting
+    {
+        public string Key { get; set; }
+
+        public string Proxy { get; set; }
+
+        public bool Enabled { get; set; }
+
     }
 
 

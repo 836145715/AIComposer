@@ -33,13 +33,15 @@
             this.titlebar = new AntdUI.WindowBar();
             this.tabs = new AntdUI.Tabs();
             this.tabPage2 = new AntdUI.TabPage();
+            this.inputProxy = new AntdUI.Input();
+            this.tableAI = new AntdUI.Table();
+            this.buttonAddAi = new AntdUI.Button();
+            this.selectAi = new AntdUI.Select();
             this.tabPage1 = new AntdUI.TabPage();
             this.buttonAskHotKey = new AntdUI.Button();
             this.buttonShowHotKey = new AntdUI.Button();
             this.buttonOk = new AntdUI.Button();
             this.buttonCancel = new AntdUI.Button();
-            this.selectAi = new AntdUI.Select();
-            this.buttonAddAi = new AntdUI.Button();
             this.tabs.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -54,7 +56,7 @@
             this.titlebar.Location = new System.Drawing.Point(0, 0);
             this.titlebar.MaximizeBox = false;
             this.titlebar.Name = "titlebar";
-            this.titlebar.Size = new System.Drawing.Size(441, 40);
+            this.titlebar.Size = new System.Drawing.Size(809, 40);
             this.titlebar.SubText = "";
             this.titlebar.TabIndex = 1;
             this.titlebar.Text = "系统设置";
@@ -70,21 +72,68 @@
             this.tabs.Name = "tabs";
             this.tabs.Pages.Add(this.tabPage2);
             this.tabs.Pages.Add(this.tabPage1);
-            this.tabs.Size = new System.Drawing.Size(421, 346);
+            this.tabs.Size = new System.Drawing.Size(785, 346);
             this.tabs.Style = styleLine1;
             this.tabs.TabIndex = 2;
             this.tabs.Text = "tabs1";
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.inputProxy);
+            this.tabPage2.Controls.Add(this.tableAI);
             this.tabPage2.Controls.Add(this.buttonAddAi);
             this.tabPage2.Controls.Add(this.selectAi);
             this.tabPage2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPage2.Location = new System.Drawing.Point(90, 6);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(325, 334);
+            this.tabPage2.Size = new System.Drawing.Size(689, 334);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "AI配置";
+            // 
+            // inputProxy
+            // 
+            this.inputProxy.AllowClear = true;
+            this.inputProxy.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.inputProxy.Location = new System.Drawing.Point(447, 3);
+            this.inputProxy.Name = "inputProxy";
+            this.inputProxy.PlaceholderText = "可选输入IP:端口";
+            this.inputProxy.Size = new System.Drawing.Size(153, 32);
+            this.inputProxy.TabIndex = 32;
+            this.inputProxy.WaveSize = 0;
+            // 
+            // tableAI
+            // 
+            this.tableAI.EmptyHeader = true;
+            this.tableAI.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tableAI.Gap = 8;
+            this.tableAI.Location = new System.Drawing.Point(17, 45);
+            this.tableAI.Name = "tableAI";
+            this.tableAI.ShowTip = false;
+            this.tableAI.Size = new System.Drawing.Size(669, 270);
+            this.tableAI.TabIndex = 31;
+            this.tableAI.Text = "table1";
+            // 
+            // buttonAddAi
+            // 
+            this.buttonAddAi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonAddAi.Location = new System.Drawing.Point(606, 1);
+            this.buttonAddAi.Name = "buttonAddAi";
+            this.buttonAddAi.Size = new System.Drawing.Size(80, 38);
+            this.buttonAddAi.TabIndex = 5;
+            this.buttonAddAi.Text = "添加";
+            this.buttonAddAi.Type = AntdUI.TTypeMini.Primary;
+            this.buttonAddAi.Click += new System.EventHandler(this.buttonAddAi_Click);
+            // 
+            // selectAi
+            // 
+            this.selectAi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.selectAi.List = true;
+            this.selectAi.Location = new System.Drawing.Point(17, 3);
+            this.selectAi.Name = "selectAi";
+            this.selectAi.PlaceholderText = "请选择要添加的AI";
+            this.selectAi.Size = new System.Drawing.Size(424, 32);
+            this.selectAi.TabIndex = 4;
+            this.selectAi.WaveSize = 0;
             // 
             // tabPage1
             // 
@@ -134,7 +183,7 @@
             this.buttonOk.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonOk.IconSvg = resources.GetString("buttonOk.IconSvg");
-            this.buttonOk.Location = new System.Drawing.Point(340, 404);
+            this.buttonOk.Location = new System.Drawing.Point(702, 404);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(84, 38);
             this.buttonOk.TabIndex = 14;
@@ -150,7 +199,7 @@
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonCancel.IconSvg = resources.GetString("buttonCancel.IconSvg");
-            this.buttonCancel.Location = new System.Drawing.Point(256, 404);
+            this.buttonCancel.Location = new System.Drawing.Point(606, 404);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(78, 38);
             this.buttonCancel.TabIndex = 13;
@@ -158,32 +207,11 @@
             this.buttonCancel.Type = AntdUI.TTypeMini.Primary;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // selectAi
-            // 
-            this.selectAi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.selectAi.List = true;
-            this.selectAi.Location = new System.Drawing.Point(17, 3);
-            this.selectAi.Name = "selectAi";
-            this.selectAi.PlaceholderText = "请选择要添加的AI";
-            this.selectAi.Size = new System.Drawing.Size(218, 32);
-            this.selectAi.TabIndex = 4;
-            this.selectAi.WaveSize = 0;
-            // 
-            // buttonAddAi
-            // 
-            this.buttonAddAi.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonAddAi.Location = new System.Drawing.Point(239, -1);
-            this.buttonAddAi.Name = "buttonAddAi";
-            this.buttonAddAi.Size = new System.Drawing.Size(80, 38);
-            this.buttonAddAi.TabIndex = 5;
-            this.buttonAddAi.Text = "添加";
-            this.buttonAddAi.Type = AntdUI.TTypeMini.Primary;
-            // 
             // SystemSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 450);
+            this.ClientSize = new System.Drawing.Size(809, 452);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.tabs);
@@ -211,5 +239,7 @@
         private AntdUI.Button buttonCancel;
         private AntdUI.Select selectAi;
         private AntdUI.Button buttonAddAi;
+        private AntdUI.Table tableAI;
+        private AntdUI.Input inputProxy;
     }
 }

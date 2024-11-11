@@ -9,7 +9,7 @@ namespace AIComposer.AISupport
 {
     public class KimiAI : AIBase
     {
-        public KimiAI() : base("Kimi", "Kimi AI", "https://kimi.moonshot.cn/")
+        public KimiAI() : base("Kimi", "Kimi.ai - 会推理解析，能深度思考的AI助手", "https://kimi.moonshot.cn/")
         {
             Key = "kimi";
         }

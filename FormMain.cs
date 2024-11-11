@@ -26,28 +26,41 @@ namespace AIComposer
         {
             try
             {
-                Program.Setting = SettingFilePath.FromJsonConfig<SystemSetting>();
+                Program.Setting = SettingFilePath.FromJsonConfig<SystemSetting>() ?? new SystemSetting();
             }
             catch (System.Exception)
             {
-                Program.Setting = null;
+                Program.Setting = new SystemSetting();
             }
 
-            if (Program.Setting == null)
+            var setting = Program.Setting;
+
+            //默认热键
+            if (setting.ShowHotkey == null)
             {
-                Program.Setting = new SystemSetting()
+                setting.ShowHotkey = new HotkeySetting()
                 {
-                    ShowHotkey = new HotkeySetting()
-                    {
-                        Modifiers = KeyModifiers.Alt,
-                        Key = Keys.D1
-                    },
-                    AskHotkey = new HotkeySetting()
-                    {
-                        Modifiers = KeyModifiers.Alt,
-                        Key = Keys.D2
-                    }
+                    Modifiers = KeyModifiers.Alt,
+                    Key = Keys.D1
                 };
+            }
+            if (setting.AskHotkey == null)
+            {
+                setting.AskHotkey = new HotkeySetting()
+                {
+                    Modifiers = KeyModifiers.Alt,
+                    Key = Keys.D2
+                };
+            }
+
+            //默认AI配置
+            if (setting.AISettings == null || setting.AISettings.Count <= 0)
+            {
+                setting.AISettings = new List<AISetting>();
+                foreach (var ai in Program.AIList)
+                {
+                    setting.AISettings.Add(new AISetting() { Key = ai.Key, Enabled = true });
+                }
             }
 
         }
